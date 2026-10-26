@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Assay Index — an independent public score for green heavy-asset projects, derived from public evidence by a published method. Edition 0: methodology on public review.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="The Assay Index">
+<meta property="og:description" content="A public score for green heavy-asset projects from public evidence by a published method. Not advice. Not a credit rating.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2311110F'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='600' fill='%23FBFAF8' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>The Assay Index</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --paper:   #FBFAF8;
+    --card:    #FFFFFF;
+    --sunk:    #F2F0EC;
+    --ink:     #11110F;
+    --ink-2:   #4A4945;
+    --ink-3:   #86857F;
+    --rule:    #DEDBD4;
+    --rule-2:  #EDEAE4;
+    --seal:    #1B3A5C;
+    --seal-ink:#14304D;
+    --seal-wash:#E8EDF2;
+
+    --bandA: #1E7A3E; --bandA-wash: #E7F3EB;
+    --bandB: #5A9A2E; --bandB-wash: #EDF3E5;
+    --bandC: #C08A12; --bandC-wash: #FAF1DC;
+    --bandD: #C4621F; --bandD-wash: #FBEDE2;
+    --bandE: #B3241C; --bandE-wash: #FAE8E6;
+
+    --f-disp: "Newsreader", Georgia, "Times New Roman", serif;
+    --f-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-mono: "Roboto Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper:   #0D0D0C;
+      --card:    #171715;
+      --sunk:    #121211;
+      --ink:     #F2F1EC;
+      --ink-2:   #A8A69E;
+      --ink-3:   #74736D;
+      --rule:    #2B2A27;
+      --rule-2:  #201F1D;
+      --seal:    #8FB4D8;
+      --seal-ink:#A9C7E6;
+      --seal-wash:#13202C;
+
+      --bandA: #46B567; --bandA-wash: #0E2415;
+      --bandB: #7FBF4A; --bandB-wash: #152110;
+      --bandC: #E0A82A; --bandC-wash: #27200B;
+      --bandD: #E5823C; --bandD-wash: #2A1709;
+      --bandE: #E05A50; --bandE-wash: #2B100E;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper:   #0D0D0C;
+    --card:    #171715;
+    --sunk:    #121211;
+    --ink:     #F2F1EC;
+    --ink-2:   #A8A69E;
+    --ink-3:   #74736D;
+    --rule:    #2B2A27;
+    --rule-2:  #201F1D;
+    --seal:    #8FB4D8;
+    --seal-ink:#A9C7E6;
+    --seal-wash:#13202C;
+
+    --bandA: #46B567; --bandA-wash: #0E2415;
+    --bandB: #7FBF4A; --bandB-wash: #152110;
+    --bandC: #E0A82A; --bandC-wash: #27200B;
+    --bandD: #E5823C; --bandD-wash: #2A1709;
+    --bandE: #E05A50; --bandE-wash: #2B100E;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--f-sans); font-size: 15px; line-height: 1.6; font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4 { margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--seal); outline-offset: 2px; border-radius: 3px; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px 80px; }
+
+  /* ---------- masthead ---------- */
+  .mast { border-bottom: 2px solid var(--ink); background: var(--card); }
+  .mast-in { max-width: 1120px; margin: 0 auto; padding: 22px 22px 16px; }
+  .mast-top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .mast h1 {
+    font-family: var(--f-disp); font-size: clamp(30px, 5.5vw, 46px);
+    font-weight: 500; letter-spacing: -.025em; line-height: 1;
+  }
+  .mast .ed {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-3); margin-left: auto;
+  }
+  .mast .sub {
+    font-family: var(--f-disp); font-style: italic; font-size: 17px;
+    color: var(--ink-2); margin-top: 7px; max-width: 58ch;
+  }
+  .demoflag {
+    display: inline-block; margin-top: 12px;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--bandE); background: var(--bandE-wash);
+    border: 1px solid color-mix(in srgb, var(--bandE) 40%, transparent);
+    padding: 4px 9px; border-radius: 3px;
+  }
+
+  /* ---------- headline stats ---------- */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--rule-2); border: 1px solid var(--rule);
+    margin-top: 22px;
+  }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat { background: var(--card); padding: 16px 17px; display: grid; gap: 2px; }
+  .stat .k { font-family: var(--f-mono); font-size: 10px; letter-spacing: .11em; text-transform: uppercase; color: var(--ink-3); }
+  .stat .v { font-family: var(--f-disp); font-size: 30px; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+  .stat .n { font-size: 12.5px; color: var(--ink-2); }
+
+  /* ---------- controls ---------- */
+  .controls {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    margin: 26px 0 12px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+  }
+  .controls .lbl { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .chipbtn {
+    appearance: none; font-family: var(--f-sans); font-size: 12.5px; font-weight: 500;
+    padding: 5px 11px; border-radius: 20px; cursor: pointer;
+    border: 1px solid var(--rule); background: var(--card); color: var(--ink-2);
+  }
+  .chipbtn:hover { border-color: var(--ink-3); color: var(--ink); }
+  .chipbtn[data-on="1"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  #q {
+    font-family: var(--f-sans); font-size: 13px; padding: 6px 11px; border-radius: 20px;
+    border: 1px solid var(--rule); background: var(--card); color: var(--ink); min-width: 170px;
+  }
+
+  /* ---------- the table ---------- */
+  .tscroll { overflow-x: auto; border: 1px solid var(--rule); background: var(--card); }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 760px; }
+  thead th {
+    text-align: left; font-family: var(--f-mono); font-size: 10px; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+    padding: 11px 13px; border-bottom: 1px solid var(--ink); white-space: nowrap;
+    background: var(--sunk); position: sticky; top: 0; z-index: 2; cursor: pointer;
+  }
+  thead th:hover { color: var(--ink); }
+  thead th[data-sorted] { color: var(--ink); }
+  tbody tr { border-bottom: 1px solid var(--rule-2); cursor: pointer; }
+  tbody tr:hover { background: var(--sunk); }
+  tbody tr[data-sel="1"] { background: var(--seal-wash); }
+  td { padding: 11px 13px; vertical-align: middle; }
+  td.rk { font-family: var(--f-mono); font-size: 12px; color: var(--ink-3); width: 38px; }
+  td.nm .p { display: block; font-weight: 500; font-size: 14px; line-height: 1.3; }
+  td.nm .d { display: block; font-size: 12.5px; color: var(--ink-3); }
+  td.mn { font-family: var(--f-mono); font-size: 12.5px; white-space: nowrap; }
+  td.sc { font-family: var(--f-mono); font-size: 17px; font-weight: 700; text-align: right; width: 58px; }
+  td.bd { width: 44px; }
+  td.bl { font-size: 12.5px; color: var(--ink-2); max-width: 26ch; }
+
+  .band {
+    display: inline-grid; place-items: center; width: 26px; height: 26px;
+    border-radius: 4px; font-family: var(--f-mono); font-weight: 700; font-size: 13px;
+    border: 1px solid transparent;
+  }
+  .band-A { color: var(--bandA); background: var(--bandA-wash); border-color: color-mix(in srgb, var(--bandA) 35%, transparent); }
+  .band-B { color: var(--bandB); background: var(--bandB-wash); border-color: color-mix(in srgb, var(--bandB) 35%, transparent); }
+  .band-C { color: var(--bandC); background: var(--bandC-wash); border-color: color-mix(in srgb, var(--bandC) 40%, transparent); }
+  .band-D { color: var(--bandD); background: var(--bandD-wash); border-color: color-mix(in srgb, var(--bandD) 40%, transparent); }
+  .band-E { color: var(--bandE); background: var(--bandE-wash); border-color: color-mix(in srgb, var(--bandE) 40%, transparent); }
+
+  /* ---------- detail ---------- */
+  #detail {
+    margin-top: 18px; border: 1px solid var(--rule); background: var(--card);
+  }
+  .dh { padding: 18px 20px; border-bottom: 1px solid var(--rule-2); display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+  .dh .big { display: flex; gap: 14px; align-items: center; }
+  .dh .bigscore { font-family: var(--f-disp); font-size: 52px; font-weight: 500; letter-spacing: -.04em; line-height: .9; }
+  .dh .bigband { width: 44px; height: 44px; font-size: 20px; }
+  .dh h3 { font-family: var(--f-disp); font-size: 24px; font-weight: 500; letter-spacing: -.02em; }
+  .dh .meta { font-size: 13px; color: var(--ink-3); margin-top: 3px; }
+  .db { padding: 18px 20px; display: grid; gap: 18px; }
+
+  .levels { display: grid; gap: 9px; }
+  .lv { display: grid; grid-template-columns: 170px minmax(0,1fr) 54px; gap: 13px; align-items: center; }
+  @media (max-width: 620px) { .lv { grid-template-columns: 1fr; gap: 3px; } }
+  .lv .ln { font-size: 13px; }
+  .lv .ln small { display: block; color: var(--ink-3); font-size: 11.5px; }
+  .lv .trk { height: 18px; background: var(--sunk); border: 1px solid var(--rule-2); border-radius: 3px; position: relative; overflow: hidden; }
+  .lv .trk i { position: absolute; inset: 0 auto 0 0; border-radius: 2px; }
+  .lv .lvv { font-family: var(--f-mono); font-size: 13px; text-align: right; }
+  .lv.unobs .trk { background: repeating-linear-gradient(45deg, var(--sunk), var(--sunk) 5px, var(--rule-2) 5px, var(--rule-2) 10px); }
+  .lv.unobs .lvv { color: var(--ink-3); }
+
+  .note {
+    border-left: 3px solid var(--seal); background: var(--seal-wash);
+    padding: 13px 15px; border-radius: 0 4px 4px 0; font-size: 13.5px; color: var(--ink-2);
+  }
+  .note strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+  section { padding: 50px 0 0; display: grid; gap: 14px; }
+  section > h2 {
+    font-family: var(--f-disp); font-size: clamp(22px, 3.4vw, 30px);
+    font-weight: 500; letter-spacing: -.022em; max-width: 26ch;
+  }
+  section > .body { font-size: 15.5px; color: var(--ink-2); max-width: 62ch; }
+
+  .bandkey { display: grid; gap: 1px; background: var(--rule-2); border: 1px solid var(--rule); }
+  .bk { background: var(--card); padding: 12px 15px; display: grid; grid-template-columns: 34px 1fr auto; gap: 14px; align-items: center; }
+  .bk .bt { font-size: 14px; font-weight: 500; }
+  .bk .bd2 { font-size: 12.5px; color: var(--ink-3); }
+  .bk .bp { font-family: var(--f-mono); font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+
+  .cta {
+    border: 2px solid var(--ink); background: var(--card); padding: 26px 24px;
+    display: grid; gap: 13px; margin-top: 14px;
+  }
+  .cta h3 { font-family: var(--f-disp); font-size: 26px; font-weight: 500; letter-spacing: -.02em; }
+  .cta p { font-size: 15px; color: var(--ink-2); max-width: 58ch; }
+  .cta .btn {
+    justify-self: start; appearance: none; font-family: var(--f-sans); font-size: 14px; font-weight: 600;
+    padding: 11px 20px; border-radius: 3px; cursor: pointer;
+    background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
+  }
+  .cta .btn:hover { opacity: .88; }
+  .cta .sm { font-size: 12.5px; color: var(--ink-3); }
+
+  .disclaim {
+    margin-top: 46px; padding: 20px 22px; border: 1px solid var(--rule);
+    background: var(--sunk); display: grid; gap: 9px;
+  }
+  .disclaim h4 { font-size: 14px; font-weight: 700; }
+  .disclaim p { font-size: 13px; color: var(--ink-2); max-width: 76ch; }
+
+  .meth { display: grid; gap: 1px; background: var(--rule-2); border: 1px solid var(--rule); }
+  .mrow { background: var(--card); padding: 12px 15px; display: grid; grid-template-columns: 1fr auto; gap: 13px; align-items: baseline; }
+  .mrow .mn2 { font-size: 13.5px; }
+  .mrow .mn2 small { display: block; color: var(--ink-3); font-size: 12px; }
+  .mrow .mw { font-family: var(--f-mono); font-size: 13px; white-space: nowrap; }
+  .mrow.off .mn2, .mrow.off .mw { color: var(--ink-3); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="mast">
+  <div class="mast-in">
+    <div class="mast-top">
+      <h1>The Assay Index</h1>
+      <span class="ed">Edition 0 &middot; methodology &middot; free</span>
+    </div>
+    <p class="sub">An independent public score for green heavy-asset projects, derived from public evidence by a published method. Not advice. Not a credit rating.</p>
+    <span class="demoflag">Edition 0 &middot; fictional projects and companies &middot; method on public review</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="stats" id="stats"></div>
+
+  <div class="controls">
+    <span class="lbl">Filter</span>
+    <span id="techFilters" style="display:flex; gap:6px; flex-wrap:wrap;"></span>
+    <span id="bandFilters" style="display:flex; gap:6px; flex-wrap:wrap; margin-left:6px;"></span>
+    <input type="search" id="q" placeholder="Search project or developer" aria-label="Search projects">
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr>
+          <th data-s="rank">#</th>
+          <th data-s="name">Project &amp; developer</th>
+          <th data-s="tech">Technology</th>
+          <th data-s="mw">Capacity</th>
+          <th data-s="country">Country</th>
+          <th data-s="score" data-sorted="1">Assay</th>
+          <th data-s="band">Band</th>
+          <th data-s="blocker">Weakest public signal</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <div id="detail"></div>
+
+  <section>
+    <h2>What the bands mean</h2>
+    <p class="body">A band is a statement about likelihood, not quality. A Band E project is not a bad project — it is an early one, and should be valued as an option rather than an asset.</p>
+    <div class="bandkey" id="bandkey"></div>
+  </section>
+
+  <section>
+    <h2>How a project is scored</h2>
+    <p class="body">Ten levels decide whether a green heavy asset ever gets built. The Index scores the five that can be observed from public evidence — grid queue positions, consent decisions, auction and tender results, land and seabed awards, and announced financing. The other five require the developer's own data.</p>
+    <div class="meth" id="meth"></div>
+    <p class="body" style="margin-top:4px;">Grid and consent together carry <strong>58% of the public score</strong>. That is deliberate. Interconnection delay and permitting are what actually kill projects — median time from grid request to operation in the United States has risen from under two years in 2008 to nearly five years in 2023, and only around 19% of projects that entered the queue between 2000 and 2018 had reached commercial operation by the end of 2023.</p>
+  </section>
+
+  <section>
+    <h2>Why the public score is capped at 72</h2>
+    <p class="body">Public evidence can show that a project has a grid offer. It cannot show whether the energy yield assessment is sound, whether the cost estimate has been tested, or whether the execution plan survives contact with a vessel market. Five of the ten levels are invisible from outside.</p>
+    <p class="body">A project therefore cannot be rated Band A from public data alone. The highest attainable public score is <strong>72 — upper Band B</strong>. A full score requires the developer to submit evidence against all ten levels.</p>
+
+    <div class="cta">
+      <h3>Scored lower than the evidence supports?</h3>
+      <p>Public evidence is thin, and the method scores only what it can see. If an input is wrong or out of date, the correction is evidence. Submissions are reviewed, factual inputs corrected within ten working days, and the correction logged.</p>
+      <button class="btn" id="claimBtn">Submit evidence</button>
+      <span class="sm" id="claimMsg">First full assessment free. Method published in full above.</span>
+    </div>
+  </section>
+
+  <div class="disclaim">
+    <h4>Status of this edition</h4>
+    <p><strong>Edition 0 is a methodology demonstration. Every project, developer and score on this page is fictional.</strong> The companies named do not exist. Any resemblance to a real organisation or project is coincidental and unintended. The scores describe nothing real. This edition exists to publish the method in full and invite scrutiny of it before any real data is scored.</p>
+
+    <h4>No reliance</h4>
+    <p>Nothing on this page is advice, a recommendation, or an assessment of creditworthiness. Scores are not credit ratings and are not prepared for the purpose of any investment, lending or procurement decision. No duty of care is assumed to any reader. Anyone making a decision about a project must rely on their own enquiries and professional advisers, not on this index.</p>
+
+    <h4>What a score is</h4>
+    <p>A score is an opinion, produced by the published method on this page, from facts in the public record. Every score shows the inputs it was derived from. Where an input is drawn from a third-party dataset, that dataset's own limitations apply: the NESO TEC register, for example, is published "as is" and NESO notes that capacity is presented in aggregate across stages and technology types, which may result in duplicate entries.</p>
+
+    <h4>Right of reply and correction</h4>
+    <p>Any organisation whose project appears in a future real-data edition may submit evidence that an input is wrong or out of date. Corrections to factual inputs are made within ten working days of receipt, the score is recomputed, and the correction is recorded in the edition log. Disputes about the method itself are published with the method.</p>
+
+    <h4>Attribution and status</h4>
+    <p>Supported by National Energy SO Open Data. This index is not official, is not produced by or in association with NESO or any regulator, and is not endorsed by any of them. Industry statistics quoted on this page — queue completion rates and connection timelines — are drawn from Lawrence Berkeley National Laboratory's <em>Queued Up</em> research. The band-to-probability mapping is calibrated against illustrative stage-conversion figures, not a published dataset, and is labelled as such.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     FICTIONAL DATA — no real companies or projects
+     [name, developer, country, tech, MW, land, grid, consent, offtake, finance]
+     sub-scores 0-100, representing publicly observable evidence
+     ============================================================ */
+  var TECHS = ["Offshore wind", "Onshore wind", "Solar", "Storage", "Grid", "Hydrogen"];
+
+  var RAW = [
+    ["Thornwick Sands",       "Northmere Energy",       "UK",        0, 1400, 92, 78, 74, 70, 55],
+    ["Calder Flats",          "Ashgrove Renewables",    "UK",        1,  420, 88, 70, 82, 64, 48],
+    ["Pelican Reach",         "Vantor Clean Power",     "USA",       2, 1100, 85, 44, 68, 58, 40],
+    ["Mirabel Basin",         "Caldera Renewables",     "France",    0,  980, 80, 62, 48, 54, 36],
+    ["Hollowmere",            "Stonebridge Power",      "UK",        3,  600, 90, 72, 88, 42, 44],
+    ["Quarry Hill",           "Fernvale Energy",        "Australia", 2,  850, 78, 30, 62, 50, 28],
+    ["Larkspur Bight",        "Oriel Offshore",         "Germany",   0, 1600, 84, 58, 40, 46, 30],
+    ["Dunmorrow Ridge",       "Kestrelbank Energy",     "Ireland",   1,  310, 86, 66, 76, 60, 42],
+    ["Saltmarsh Crossing",    "Tideford Grid",          "UK",        4, 2000, 74, 68, 36, 70, 38],
+    ["Verdant Mesa",          "Sunhollow Developments", "Spain",     2, 1250, 82, 52, 70, 48, 34],
+    ["Brackenhowe",           "Glenmoor Renewables",    "UK",        1,  260, 88, 80, 84, 72, 58],
+    ["Cobalt Flats",          "Arroyo Clean Energy",    "USA",       3,  900, 76, 26, 58, 44, 24],
+    ["Nordhavn Deep",         "Baltwind Partners",      "Denmark",   0, 1800, 90, 74, 80, 76, 62],
+    ["Pinewater",             "Ridgeline Power",        "Canada",    1,  480, 72, 38, 54, 40, 26],
+    ["Harrowgate Link",       "Interconnect Nordia",    "Norway",    4, 1400, 68, 56, 30, 62, 32],
+    ["Amberfield",            "Solmara Energy",         "India",     2, 1600, 80, 60, 74, 52, 40],
+    ["Kestrel Shoal",         "Oriel Offshore",         "Nether.",   0, 1200, 86, 70, 66, 68, 50],
+    ["Whitlow Moor",          "Glenmoor Renewables",    "UK",        1,  180, 84, 82, 86, 66, 54],
+    ["Ocotillo Draw",         "Vantor Clean Power",     "USA",       2, 1400, 70, 22, 48, 36, 20],
+    ["Greenshank Bay",        "Northmere Energy",       "UK",        0,  900, 88, 64, 72, 58, 46],
+    ["Tallowmere",            "Ashgrove Renewables",    "UK",        3,  340, 82, 76, 80, 50, 46],
+    ["Rivencourt",            "Caldera Renewables",     "France",    5,  400, 76, 48, 42, 38, 26],
+    ["Sablefield",            "Sunhollow Developments", "Spain",     2,  720, 78, 56, 68, 46, 32],
+    ["Elderstone Pass",       "Ridgeline Power",        "Canada",    1,  560, 74, 42, 50, 44, 28],
+    ["Marram Head",           "Baltwind Partners",      "Denmark",   0, 1500, 92, 80, 76, 72, 58],
+    ["Cinderfell",            "Fernvale Energy",        "Australia", 3,  450, 80, 34, 64, 42, 30],
+    ["Lowmoor Junction",      "Tideford Grid",          "UK",        4,  800, 70, 62, 34, 58, 36],
+    ["Pyrite Gulch",          "Arroyo Clean Energy",    "USA",       2, 1050, 72, 20, 52, 32, 18],
+    ["Heronsmere",            "Kestrelbank Energy",     "Ireland",   0,  700, 84, 54, 60, 50, 38],
+    ["Aurum Plains",          "Solmara Energy",         "India",     2, 2200, 78, 58, 70, 48, 36],
+    ["Bellhaven Sound",       "Oriel Offshore",         "Scotland",  0, 2400, 88, 46, 58, 54, 34],
+    ["Gorsefield",            "Stonebridge Power",      "UK",        1,  220, 86, 74, 82, 62, 50],
+    ["Nettlebridge",          "Glenmoor Renewables",    "UK",        3,  280, 84, 78, 78, 56, 48],
+    ["Vermilion Flats",       "Vantor Clean Power",     "USA",       2, 1800, 74, 24, 56, 38, 22],
+    ["Skarnholt",             "Baltwind Partners",      "Norway",    5,  320, 80, 52, 44, 40, 30],
+    ["Pembury Shelf",         "Northmere Energy",       "UK",        0, 1100, 86, 60, 64, 56, 42],
+    ["Dovecote Rise",         "Ashgrove Renewables",    "UK",        1,  390, 82, 68, 76, 58, 44],
+    ["Alder Creek",           "Ridgeline Power",        "Canada",    2,  640, 76, 36, 58, 42, 26],
+    ["Thornbeck Reach",       "Kestrelbank Energy",     "Ireland",   4,  520, 72, 58, 32, 54, 30],
+    ["Corvus Deep",           "Oriel Offshore",         "Germany",   0, 2000, 90, 36, 54, 48, 28]
+  ];
+
+  /* public level weights — only 5 of 10 are observable */
+  var PUB = [
+    { key: "land",    name: "Land & seabed rights",  w: 12.3, ev: "Lease awards, option agreements, seabed round results" },
+    { key: "grid",    name: "Grid connection",       w: 30.8, ev: "Queue position, connection offer, energisation date" },
+    { key: "consent", name: "Consent & permitting",  w: 27.7, ev: "Planning decisions, marine licences, appeals, challenges" },
+    { key: "offtake", name: "Revenue & offtake",     w: 21.5, ev: "Auction and CfD results, announced PPAs" },
+    { key: "finance", name: "Finance & FID",         w: 7.7,  ev: "Announced financing, FID statements, lender mandates" }
+  ];
+  var HIDDEN = [
+    { name: "Resource & yield",     why: "P50/P90 assessment is proprietary" },
+    { name: "Technology & layout",  why: "Supplier agreements are confidential" },
+    { name: "Definition & cost",    why: "Estimates are never published" },
+    { name: "Build & energise",     why: "Vessel and logistics contracts are private" },
+    { name: "Operate & extend",     why: "Only observable after commissioning" }
+  ];
+
+  var PUBLIC_CAP = 72;
+
+  var BANDS = [
+    { b: "A", min: 85, t: "Advanced",    d: "Public evidence shows grid, consent and revenue secured", p: "~80% of comparable projects reach operation" },
+    { b: "B", min: 70, t: "Established", d: "Most public milestones secured; one or two outstanding",  p: "~60%" },
+    { b: "C", min: 55, t: "Developing",  d: "Key milestones in progress; outcome not yet determined",   p: "~40%" },
+    { b: "D", min: 40, t: "Early",       d: "Few public milestones secured at this stage",              p: "~22%" },
+    { b: "E", min: 0,  t: "Initial",     d: "Limited public evidence available at this stage",         p: "~8%" }
+  ];
+  function bandOf(s) { for (var i = 0; i < BANDS.length; i++) if (s >= BANDS[i].min) return BANDS[i]; return BANDS[4]; }
+
+  /* ---- build the dataset ---- */
+  var DATA = RAW.map(function (r) {
+    var sub = { land: r[5], grid: r[6], consent: r[7], offtake: r[8], finance: r[9] };
+    var raw = PUB.reduce(function (a, p) { return a + sub[p.key] * p.w / 100; }, 0);
+    var capped = false;
+    if ((sub.grid < 40 || sub.consent < 40)) { if (raw > 54) { raw = 54; capped = true; } }
+    if (raw > PUBLIC_CAP) { raw = PUBLIC_CAP; capped = capped || "cap"; }
+    var score = Math.round(raw);
+
+    // weakest public signal — stated as the observed fact, never as a characterisation
+    var worst = PUB.slice().sort(function (a, b) {
+      return (sub[a.key] * a.w) - (sub[b.key] * b.w);
+    })[0];
+    var blocker;
+    if (sub.grid < 40) blocker = "Grid: connection evidence scores " + sub.grid;
+    else if (sub.consent < 40) blocker = "Consent: public evidence scores " + sub.consent;
+    else if (sub.offtake < 45) blocker = "Offtake: no contract in public record";
+    else if (sub.finance < 35) blocker = "Finance: no announcement in public record";
+    else blocker = worst.name + ": lowest public signal (" + sub[worst.key] + ")";
+
+    return {
+      name: r[0], dev: r[1], country: r[2], tech: TECHS[r[3]], techId: r[3], mw: r[4],
+      sub: sub, score: score, band: bandOf(score), blocker: blocker,
+      gridCap: sub.grid < 40 || sub.consent < 40
+    };
+  }).sort(function (a, b) { return b.score - a.score; });
+  DATA.forEach(function (d, i) { d.rank = i + 1; });
+
+  /* ============================================================
+     RENDER
+     ============================================================ */
+  var state = { tech: "all", band: "all", q: "", sort: "score", dir: -1, sel: null };
+
+  function filtered() {
+    var out = DATA.filter(function (d) {
+      if (state.tech !== "all" && d.tech !== state.tech) return false;
+      if (state.band !== "all" && d.band.b !== state.band) return false;
+      if (state.q) {
+        var s = (d.name + " " + d.dev + " " + d.country).toLowerCase();
+        if (s.indexOf(state.q.toLowerCase()) < 0) return false;
+      }
+      return true;
+    });
+    var k = state.sort, dir = state.dir;
+    out.sort(function (a, b) {
+      var va = k === "band" ? a.band.b : k === "name" ? a.name : k === "blocker" ? a.blocker : a[k];
+      var vb = k === "band" ? b.band.b : k === "name" ? b.name : k === "blocker" ? b.blocker : b[k];
+      if (typeof va === "string") return dir * va.localeCompare(vb);
+      return dir * (va - vb);
+    });
+    return out;
+  }
+
+  function renderStats() {
+    var tot = DATA.length;
+    var gw = DATA.reduce(function (a, d) { return a + d.mw; }, 0) / 1000;
+    var ab = DATA.filter(function (d) { return d.band.b === "A" || d.band.b === "B"; }).length;
+    var de = DATA.filter(function (d) { return d.band.b === "D" || d.band.b === "E"; }).length;
+    document.getElementById("stats").innerHTML =
+      '<div class="stat"><span class="k">Projects rated</span><span class="v">' + tot + '</span><span class="n">this edition</span></div>' +
+      '<div class="stat"><span class="k">Capacity covered</span><span class="v">' + gw.toFixed(1) + ' GW</span><span class="n">announced nameplate</span></div>' +
+      '<div class="stat"><span class="k">Band A or B</span><span class="v">' + Math.round(ab / tot * 100) + '%</span><span class="n">' + ab + ' projects, firm or better</span></div>' +
+      '<div class="stat"><span class="k">Band D or E</span><span class="v">' + Math.round(de / tot * 100) + '%</span><span class="n">' + de + ' projects on thin evidence</span></div>';
+  }
+
+  function renderFilters() {
+    var t = ['<button class="chipbtn" data-t="all" data-on="1">All</button>'].concat(
+      TECHS.map(function (x) { return '<button class="chipbtn" data-t="' + x + '">' + x + '</button>'; })
+    ).join("");
+    document.getElementById("techFilters").innerHTML = t;
+    var b = ['<button class="chipbtn" data-b="all" data-on="1">All bands</button>'].concat(
+      BANDS.map(function (x) { return '<button class="chipbtn" data-b="' + x.b + '">' + x.b + '</button>'; })
+    ).join("");
+    document.getElementById("bandFilters").innerHTML = b;
+  }
+
+  function renderRows() {
+    var list = filtered();
+    document.getElementById("rows").innerHTML = list.map(function (d) {
+      return '<tr data-n="' + d.name + '"' + (state.sel === d.name ? ' data-sel="1"' : '') + '>' +
+        '<td class="rk">' + d.rank + '</td>' +
+        '<td class="nm"><span class="p">' + d.name + '</span><span class="d">' + d.dev + '</span></td>' +
+        '<td class="mn">' + d.tech + '</td>' +
+        '<td class="mn">' + d.mw.toLocaleString("en-US") + ' MW</td>' +
+        '<td class="mn">' + d.country + '</td>' +
+        '<td class="sc" style="color:var(--band' + d.band.b + ')">' + d.score + '</td>' +
+        '<td class="bd"><span class="band band-' + d.band.b + '">' + d.band.b + '</span></td>' +
+        '<td class="bl">' + d.blocker + '</td>' +
+      '</tr>';
+    }).join("");
+    if (!list.length) {
+      document.getElementById("rows").innerHTML =
+        '<tr><td colspan="8" style="padding:26px 14px; color:var(--ink-3);">No projects match this filter.</td></tr>';
+    }
+  }
+
+  function renderDetail() {
+    var host = document.getElementById("detail");
+    if (!state.sel) {
+      host.innerHTML = '<div class="db"><p style="color:var(--ink-3); font-size:14px; margin:0;">' +
+        'Select any project above to see how its score was assembled, which evidence was found, and what is missing.</p></div>';
+      return;
+    }
+    var d = DATA.filter(function (x) { return x.name === state.sel; })[0];
+
+    var levels = PUB.map(function (p) {
+      var v = d.sub[p.key];
+      var col = v >= 70 ? "var(--bandA)" : v >= 55 ? "var(--bandB)" : v >= 45 ? "var(--bandC)" : v >= 30 ? "var(--bandD)" : "var(--bandE)";
+      return '<div class="lv"><div class="ln">' + p.name + '<small>' + p.ev + '</small></div>' +
+        '<div class="trk"><i style="width:' + v + '%; background:' + col + ';"></i></div>' +
+        '<div class="lvv">' + v + '</div></div>';
+    }).join("");
+
+    var hidden = HIDDEN.map(function (h) {
+      return '<div class="lv unobs"><div class="ln">' + h.name + '<small>' + h.why + '</small></div>' +
+        '<div class="trk"></div><div class="lvv">&mdash;</div></div>';
+    }).join("");
+
+    host.innerHTML =
+      '<div class="dh">' +
+        '<div class="big">' +
+          '<span class="bigscore" style="color:var(--band' + d.band.b + ')">' + d.score + '</span>' +
+          '<span class="band band-' + d.band.b + ' bigband">' + d.band.b + '</span>' +
+        '</div>' +
+        '<div style="flex:1 1 240px;">' +
+          '<h3>' + d.name + '</h3>' +
+          '<div class="meta">' + d.dev + ' &middot; ' + d.tech + ' &middot; ' + d.mw.toLocaleString("en-US") + ' MW &middot; ' + d.country + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="db">' +
+        (d.gridCap
+          ? '<div class="note" style="border-left-color:var(--bandE); background:var(--bandE-wash);"><strong>Score capped at 54 by method.</strong> ' +
+            (d.sub.grid < 40 ? 'The grid-connection evidence component is ' + d.sub.grid + '. ' : 'The consent evidence component is ' + d.sub.consent + '. ') +
+            'Under the published method, a grid or consent component below 40 caps the overall score, because progress on other levels does not substitute for these two.</div>'
+          : '') +
+        '<div class="levels">' + levels + '</div>' +
+        '<div style="border-top:1px solid var(--rule-2); padding-top:14px;">' +
+          '<div style="font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px;">Not observable from public evidence</div>' +
+          '<div class="levels">' + hidden + '</div>' +
+        '</div>' +
+        '<div class="note"><strong>This is a partial score.</strong> Five of the ten levels that decide whether this project gets built cannot be seen from outside. ' +
+        'The highest score obtainable on public evidence alone is ' + PUBLIC_CAP + '. A full score needs the developer\'s own evidence.</div>' +
+      '</div>';
+  }
+
+  function renderBandKey() {
+    document.getElementById("bandkey").innerHTML = BANDS.map(function (b) {
+      return '<div class="bk"><span class="band band-' + b.b + '">' + b.b + '</span>' +
+        '<div><div class="bt">' + b.t + '</div><div class="bd2">' + b.d + '</div></div>' +
+        '<span class="bp">' + b.p + '</span></div>';
+    }).join("");
+  }
+
+  function renderMeth() {
+    var rows = PUB.map(function (p) {
+      return '<div class="mrow"><div class="mn2">' + p.name + '<small>' + p.ev + '</small></div>' +
+        '<div class="mw">' + p.w.toFixed(1) + '%</div></div>';
+    }).join("");
+    var off = HIDDEN.map(function (h) {
+      return '<div class="mrow off"><div class="mn2">' + h.name + '<small>' + h.why + '</small></div>' +
+        '<div class="mw">not scored</div></div>';
+    }).join("");
+    document.getElementById("meth").innerHTML = rows + off;
+  }
+
+  /* ---- events ---- */
+  document.getElementById("techFilters").addEventListener("click", function (e) {
+    var b = e.target.closest(".chipbtn"); if (!b) return;
+    state.tech = b.dataset.t;
+    this.querySelectorAll(".chipbtn").forEach(function (x) { x.dataset.on = x.dataset.t === state.tech ? "1" : "0"; });
+    renderRows();
+  });
+  document.getElementById("bandFilters").addEventListener("click", function (e) {
+    var b = e.target.closest(".chipbtn"); if (!b) return;
+    state.band = b.dataset.b;
+    this.querySelectorAll(".chipbtn").forEach(function (x) { x.dataset.on = x.dataset.b === state.band ? "1" : "0"; });
+    renderRows();
+  });
+  document.getElementById("q").addEventListener("input", function () {
+    state.q = this.value; renderRows();
+  });
+  document.querySelector("thead").addEventListener("click", function (e) {
+    var th = e.target.closest("th"); if (!th) return;
+    var k = th.dataset.s;
+    if (state.sort === k) state.dir *= -1; else { state.sort = k; state.dir = (k === "name" || k === "tech" || k === "country" || k === "band" || k === "blocker") ? 1 : -1; }
+    this.querySelectorAll("th").forEach(function (x) { x.removeAttribute("data-sorted"); });
+    th.dataset.sorted = "1";
+    renderRows();
+  });
+  document.getElementById("rows").addEventListener("click", function (e) {
+    var tr = e.target.closest("tr"); if (!tr || !tr.dataset.n) return;
+    state.sel = state.sel === tr.dataset.n ? null : tr.dataset.n;
+    renderRows(); renderDetail();
+    if (state.sel) document.getElementById("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+  document.getElementById("claimBtn").addEventListener("click", function () {
+    this.textContent = "This is a demonstration";
+    this.disabled = true;
+    this.style.opacity = ".6";
+    document.getElementById("claimMsg").textContent =
+      "In the real index this is the only sales mechanism there is — a developer who disputes their score has to supply evidence, and that conversation is the whole funnel.";
+  });
+
+  renderStats();
+  renderFilters();
+  renderRows();
+  renderDetail();
+  renderBandKey();
+  renderMeth();
+})();
+</script>
+
+</body>
+</html>
